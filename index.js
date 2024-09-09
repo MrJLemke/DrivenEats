@@ -1,11 +1,9 @@
-// Variáveis globais para rastrear os itens selecionados
 let selectedDish = null;
 let selectedDrink = null;
 let selectedDessert = null;
 
-// Função para selecionar um item de prato, bebida ou sobremesa
+// função para selecionar um item 
 function selectItem(category, element) {
-  // Remove a seleção anterior, se houver
   if (category === 'dish' && selectedDish) {
       selectedDish.classList.remove('selected');
   } else if (category === 'drink' && selectedDrink) {
@@ -14,7 +12,7 @@ function selectItem(category, element) {
       selectedDessert.classList.remove('selected');
   }
 
-  // Adiciona a classe 'selected' ao novo item e salva a seleção
+  // adiciona a classe selected ao novo
   element.classList.add('selected');
   if (category === 'dish') {
       selectedDish = element;
@@ -24,24 +22,24 @@ function selectItem(category, element) {
       selectedDessert = element;
   }
 
-  // Atualiza o total
+  // atualiza o total
   updateTotal();
 }
 
-// Função para atualizar o total do pedido
+//  o total do pedido
 function updateTotal() {
     let total = 0;
 
-    // Atualiza o total apenas se todos os itens estiverem selecionados
+    //  o total apenas dos itens que estiverem selecionados
     if (selectedDish) total += parseFloat(selectedDish.dataset.price);
     if (selectedDrink) total += parseFloat(selectedDrink.dataset.price);
     if (selectedDessert) total += parseFloat(selectedDessert.dataset.price);
 
-    // Atualiza o valor total no HTML
+    // total no HTML
     const totalPriceElement = document.querySelector('.total-price');
     totalPriceElement.textContent = `Total: R$${total.toFixed(2)}`;
 
-    // Habilitar/desabilitar o botão de confirmação
+    // habilitar/desabilitar o botão de confirm
     const confirmButton = document.querySelector('.confirm-button');
     if (selectedDish && selectedDrink && selectedDessert) {
         confirmButton.disabled = false;
@@ -56,15 +54,15 @@ function updateTotal() {
 
 
 
-// Função para exibir o resumo do pedido
+// exibir o resumo do pedido
 function showOrderSummary() {
     const pedidoModal = document.querySelector('.pedido');
     const selectedItemsElement = document.querySelector('#selected-items');
 
-    // Limpa os itens selecionados previamente
+    // limpa os itens selecionados previamente
     selectedItemsElement.innerHTML = '';
 
-    // Adiciona os itens selecionados ao resumo
+    // adiciona os itens selecionados ao resumo
     if (selectedDish) {
         const dishName = selectedDish.querySelector('h3').textContent;
         const dishPrice = selectedDish.querySelector('.price').textContent;
@@ -81,17 +79,17 @@ function showOrderSummary() {
         selectedItemsElement.innerHTML += `<p> ${dessertName} - R$${dessertPrice}</p>`;
     }
 
-    // Exibe o modal com o resumo do pedido
+    // modal com o resumo do pedido
     pedidoModal.style.display = 'flex';
 }
 
-// Função para fechar o modal de pedido
+// fechar o modal de pedido
 function closeOrderSummary() {
     const pedidoModal = document.querySelector('.pedido');
     pedidoModal.style.display = 'none';
 }
 
-// Adiciona evento de clique aos itens de pratos, bebidas e sobremesas
+// evento de clique nos itens pratos, bebidas e sobremesas
 document.querySelectorAll('.menu-lista-1 .item-card').forEach(item => {
     item.addEventListener('click', () => selectItem('dish', item));
 });
@@ -102,17 +100,17 @@ document.querySelectorAll('.menu-lista-3 .item-card').forEach(item => {
     item.addEventListener('click', () => selectItem('dessert', item));
 });
 
-// Adiciona evento de clique ao botão de fechar pedido
+// evento de clique no botão de fechar pedido
 document.querySelector('.confirm-button').addEventListener('click', () => {
     if (!document.querySelector('.confirm-button').disabled) {
         showOrderSummary();
     }
 });
 
-// Adiciona evento de clique ao botão de cancelar pedido
+// evento de clique no botão de cancelar pedido
 document.querySelector('.cancel-button').addEventListener('click', closeOrderSummary);
 
-// Função para confirmar o pedido e enviar para o WhatsApp
+// função para confirmar o pedido e enviar para o WhatsApp
 function confirmOrder() {
   const total = parseFloat(document.querySelector('.total-price').textContent.replace('Total: R$', ''));
   
@@ -136,12 +134,12 @@ function confirmOrder() {
 
   message += `Total: R$${total.toFixed(2)}`;
 
-  // Cria o link do WhatsApp
+
   const whatsappUrl = `https://wa.me/5551990149710?text=${encodeURIComponent(message)}`;
 
-  // Redireciona o usuário para o WhatsApp
+
   window.open(whatsappUrl, '_blank');
 }
 
-// Adiciona o evento de clique ao botão de confirmação no modal
+
 document.querySelector('.submit-button').addEventListener('click', confirmOrder);
