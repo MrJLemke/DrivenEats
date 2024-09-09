@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <title>DrivenEats</title>
+  
+</head>
+<body>
+      <header>
+        <h1 class="site-title">DrivenEats</h1>
+        <h3 class="site-description">Sua comida em 6 minutos</h3>
+      </header>
+  <div class="container">
+
+
+    <!-- Seção de comida -->
+    <h3 class="first-title">Escolha sua comida</h3>
+    <div class="menu-lista-1">
+      <div class="item-card" data-price="14.90" onclick="selectItem('dish', this)">
+        <img class="imgm" src="\P.img\pf_frango.jpg" alt="Frango Yin Yang">
+        <h3>Frango Yin Yang</h3>
+        <p>Um pouco de batata, um pouco de salada</p>
+        <p class="price">14,90</p>
+      </div>
+      <div class="item-card" data-price="13.90" onclick="selectItem('dish', this)">
+        <img class="imgm" src="\P.img\pf_carne.jpg" alt="Carne da boa">
+        <h3>Carne com batata</h3>
+        <p>Um pouco de batata, um pouco de salada</p>
+        <p class="price">13,90</p>
+      </div>
+      <div class="item-card">
+        <img class="imgm" src="\P.img\pf_calabresa.png" alt="Calabresa Fina">
+        <h3>Calabresa Fina</h3>
+        <p>Um pouco de batata, um pouco de arroz </p>
+        <p class="price">15.90</p>
+      </div>
+    </div>
+
+    <!-- Seção de bebidas -->
+    <h3 class="title">Agora, sua bebida</h3>
+    <div class="menu-lista-2">
+      <div class="item-card" data-price="4.90" onclick="selectItem('drink', this)">
+        <img class="imgm" src="\P.img\fanta.png" alt="Fanta Gelada">
+        <h3>Fanta Gelada</h3>
+        <p>Lata 350ml</p>
+        <p class="price">4,90</p>
+      </div>
+      <div class="item-card" data-price="5.90" onclick="selectItem('drink', this)">
+        <img class="imgm" src="\P.img\coca.png" alt="Coquinha Gelada">
+        <h3>Coquinha Gelada</h3>
+        <p>Lata 350ml</p>
+        <p class="price">5,90</p>
+      </div>
+      <div class="item-card">
+        <img class="imgm" src="\P.img\suco.png" alt="Suco Gelada">
+        <h3>Suco Natural</h3>
+        <p>Copo 450ml</p>
+        <p class="price" >3.90</p>
+      </div>
+    </div>
+
+    <!-- Seção de sobremesa -->
+    <h3 class="title">Por fim, sua sobremesa</h3>
+    <div class="menu-lista-3">
+      <div class="item-card" data-price="6.90" onclick="selectItem('dessert', this)">
+        <img class="imgm" src="\P.img\brownie.jpg" alt="Brownie">
+        <h3>Brownie</h3>
+        <p>Apenas Brownie</p>
+        <p class="price">6,90</p>
+      </div>
+      <div class="item-card" data-price="7.90" onclick="selectItem('dessert', this)">
+        <img class="imgm" src="\P.img\mouse.jpg" alt="Mousse">
+        <h3>Mousse</h3>
+        <p>Apenas Mouse</p>
+        <p class="price">7,90</p>
+      </div>
+      <div class="item-card">
+        <img class="imgm" src="\P.img\pudim.jpg" alt="Pudim">
+        <h3>Pudim</h3>
+        <p>Apenas pudim</p>
+        <p class="price" >8.90</p>
+        </div> 
+    </div>
+
+    <!-- Botão de fechar pedido -->
+     <div class="footer">
+        <button class="confirm-button" disabled>Selecione os 3 itens <p>para fechar o pedido</p></button>
+     </div>
+    <!-- Modal de pedido -->
+    <div class="pedido" id="pedido-modal">
+      <div class="pedido-content">
+        <h2>Confirme seu pedido</h2>
+        <div class="selected-items" id="selected-items"></div>
+        <p class="total-price">Total: 0,00</p>
+        <button class="submit-button" onclick="confirmOrder()">Tudo certo, pode pedir!</button>
+        <button class="cancel-button" onclick="closeOrderSummary()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
